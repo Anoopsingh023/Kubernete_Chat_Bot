@@ -29,7 +29,9 @@ def _probe_gemini():
 
 
 def _load_fallback():
-    from sentence_transformers import SentenceTransformer
+    from importlib import import_module
+
+    SentenceTransformer = import_module("sentence_transformers").SentenceTransformer
     logfire.info("Loading sentence-transformers fallback (all-mpnet-base-v2, 768-dim).")
     return SentenceTransformer("all-mpnet-base-v2")
 
